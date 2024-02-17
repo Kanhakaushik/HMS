@@ -22,6 +22,9 @@ def team(request):
 def testimonial(request):
     return render(request,'app/testimonial.html')
 
+def bash(request):
+    return render(request,'app/bash.html')
+
 def booking(request):
     return render(request,'app/booking.html')
 
