@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+# from django.shortcuts import render
 
 def home(request):
     return render(request,'app/index.html')
@@ -22,11 +23,15 @@ def team(request):
 def testimonial(request):
     return render(request,'app/testimonial.html')
 
-def bash(request):
-    return render(request,'app/bash.html')
+# def bash(request):
+#     return render(request,'app/bash.html')
 
 def booking(request):
     return render(request,'app/booking.html')
+# ----------------------------------
+
+def login(request):
+    return render(request,'app/login.html')
 
 def register(request):
     if request.POST:
@@ -34,47 +39,72 @@ def register(request):
         email=request.POST['email']
         password=request.POST['password']
         cpassword=request.POST['cpassword']
-        user=DataSignup.objects.filter(email=email)
+        user=request.POST['user']
 
-        if user:
-            msg="user alredy exist"
-            return render(request,'app/register.html')
+        if user=='admin':
+            valid=Admin_registration.objects.filter(Email=email)
+            if valid:
+                msg="User alredy exist"
+                return render(request,'app/register.html',{'msg':msg})
+            if password==cpassword:
+                Admin_registration.objects.create(
+                    Name=name,
+                    Email=email,
+                    Password=password,
+                    Cnf_password=cpassword
+                )
+                msg="Registrerion successfully"
+                return render(request,'app/login.html',{'msg':msg})
+            else:
+                msg="Password and Confirm password are not match"
+                return render(request,'app/register.html',{'msg':msg})
+
         else:
-            DataSignup.objects.create(
-                name=name,
-                email=email,
-                password=password,
-                cpassword=cpassword
-            )
-            msg="Registrerion successfully"
-            return render(request,'app/login.html')
+            valid=Manager_registration.objects.filter(Email=email)
+            if valid:
+                msg="User alredy exist"
+                return render(request,'app/register.html',{'msg':msg})
+            
+            if password==cpassword:
+                Manager_registration.objects.create(
+                    Name=name,
+                    Email=email,
+                    Password=password,
+                    Cnf_password=cpassword
+                )
+                msg="Registrerion successfully"
+                return render(request,'app/login.html',{'msg':msg})
+            else:
+                msg="Password and Confirm password are not match"
+                return render(request,'app/register.html',{'msg':msg})
+               
     else:
         msg="change method again post"
         return render(request,'app/register.html')
 
-def login(request):
-    if request.method == "POST":
-        email = request.POST['email']
-        password = request.POST['password']
+def login_Data(request):
+    name=request.POST['name']
+    email=request.POST['email']
+    password=request.POST['password']
+    user=request.POST['user']
 
-        # Checking the emailid with database
-        user = DataSignup.objects.filter(email=email)
-        if user:
-            data = DataSignup.objects.get(email=email)
-            if data.password == password:
-                name = data.name
-                email = data.email
-                cpassword=cpassword
-                user={
-                    'name':name,
-                   'email':email,
-                   'cpassword':cpassword,
-                  }
-                return render(request,"app/index.html",{'key':user})
-            else:
-                message = "Password does not match"
-                return render(request,"app/login.html",{'msg':message})
-        else:
-            message = "User does not exist"
-            return render(request,"app/register.html",{'msg':message})
- 
+    if user=='admin':
+        data=Admin_registration.objects.get(Email=email)
+        if password==data.Password:
+
+            Name=data.Name
+            Email=data.Email
+
+            request.session['Name']=Name
+            request.session['Email']=Email
+
+            admin_detail={
+                'Name':Name ,
+               'Email':Email }
+        return render(request,"app/dashboard.html",{'data':admin_detail})
+
+def logout(request):
+    if "Name" in request.session:
+        # del request.session["Name"]
+        request.session.flush()
+    return render(request,'app/index.html')
