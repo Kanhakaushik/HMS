@@ -14,20 +14,10 @@ def contact(request):
 def room(request):
     return render(request,'app/room.html')
 
-def service(request):
-    return render(request,'app/service.html')
+def gallery(request):
+    return render(request,'app/gallery.html')
 
-def team(request):
-    return render(request,'app/team.html')
 
-def testimonial(request):
-    return render(request,'app/testimonial.html')
-
-# def bash(request):
-#     return render(request,'app/bash.html')
-
-def booking(request):
-    return render(request,'app/booking.html')
 # ----------------------------------
 
 def login(request):

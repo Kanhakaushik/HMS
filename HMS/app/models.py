@@ -14,3 +14,7 @@ class Manager_registration(models.Model):
     Cnf_password=models.CharField(max_length=200)
     
     
+# class book_registration(models.Model):
+#     Check_in_date=models.DateField(auto_now=True)
+#     Check_out_date = models.DateTimeField()
+#     A
