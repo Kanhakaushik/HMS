@@ -1,55 +1,76 @@
 <!DOCTYPE html>
-{% load static %}
-<!-- Coding By CodingNepal - codingnepalweb.com -->
-<html lang="en" dir="ltr">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hotel Management System</title>
-  <link rel="stylesheet" href="{% static 'css/regi.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Admin Dashboard</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add your custom CSS styles -->
+    <style>
+        /* Add your custom styles here */
+    </style>
 </head>
-
 <body>
-  <div class="wrapper">
-    <h2>Registration</h2>
-    <p style="color: red;">{{msg}}</p>
 
+<!-- Sidebar -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="sidebar">
+        <!-- Admin Logo and Details -->
+        <div class="admin-details">
+            <img src="admin_logo.png" alt="Admin Logo" class="admin-logo">
+            <div class="admin-info">
+                <p>Admin Name</p>
+                <p>Admin Email</p>
+            </div>
+        </div>
+        
+        <!-- Navigation Links -->
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#room-details">Room Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#staff-details">Staff Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#user-details">User Details</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-    <form action="{% url 'register' %}" method="post">
-      {% csrf_token %}
-            <div class="input-box">
-              <input type="text" placeholder="Enter your name" name="name" required>
-            </div>
-            <div class="input-box">
-              <input type="email" placeholder="Enter your email" name="email" required>
-            </div>
-            <div class="input-box">
-              <input type="password" placeholder="Create password" name="password" required>
-            </div>
-            <div class="input-box">
-              <input type="password" placeholder="Confirm password" name="cpassword" required>
-            </div>
-            
-            <div>
-              <p>Please select your User</p>
-              <input type="radio" name="user" value="admin" required>
-              <label for="">Admin</label>
+<!-- Main Content -->
+<div class="container-fluid">
+    <!-- Room Details Section -->
+    <div id="room-details" class="section">
+        <h2>Room Details</h2>
+        <!-- Room Details Table with ability to book room -->
+        <!-- Add your room details table and booking functionality here -->
+    </div>
 
-              <br>
-              <input type="radio" name="user" value="manager" required>
-              <label for="">Manager</label>
+    <!-- Staff Details Section -->
+    <div id="staff-details" class="section">
+        <h2>Staff Details</h2>
+        <!-- Staff Details Table with salary, name, position, etc. -->
+        <!-- Add your staff details table here -->
+    </div>
 
-            </div>
+    <!-- User Details Section -->
+    <div id="user-details" class="section">
+        <h2>User Details</h2>
+        <!-- User Details Table with user id, name, email, password, etc. -->
+        <!-- Add your user details table here -->
+    </div>
+</div>
 
-            <div class="input-box button">
-              <input type="Submit" value="Register Now">
-            </div>
-            <div class="text">
-              <h3>Already have an account? <a href="{% url 'login' %}">Login now</a></h3>
-            </div>
-    </form>
-  </div>
+<!-- Add Bootstrap JS and Popper.js scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Add your custom JavaScript code -->
+<script>
+    // Add your custom JavaScript code here
+</script>
 </body>
-
 </html>

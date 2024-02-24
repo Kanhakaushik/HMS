@@ -25,6 +25,7 @@ urlpatterns = [
     path('contact/',views.contact,name='contact'),
     path('room/',views.room,name='room'),
     path('gallery/',views.gallery,name='gallery'),
+    path('main/',views.main,name='main'),
     
     path('login/',views.login,name='login'),
     
@@ -34,4 +35,5 @@ urlpatterns = [
     path('room_book/',views.room_book,name='room_book'),
     path('add_room/',views.add_room,name='add_room'),
     path('room_allotted/',views.room_allotted,name='room_allotted'),
+    path('adminlogin',views.adminlogin,name="adminlogin")
 ]

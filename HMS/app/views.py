@@ -18,6 +18,10 @@ def room(request):
 def gallery(request):
     return render(request,'app/gallery.html')
 
+def main(request):
+    return render(request,'app/admindash.html')
+
+
 
 # ----------------------------------
 
@@ -137,4 +141,19 @@ def room_allotted(request):
     Roomfrom=RoomsFrom()
     RoombookFrom=Room_bookFrom()
     return render(request,'app/room_book.html',{'Roomfrom':Roomfrom,'RoombookFrom':RoombookFrom})
+
+def adminlogin(request):
+    if request.method=="POST":
+        ad_id=request.POST['adminID']
+        ad_pass=request.POST['adminPassword']
+        admin_data={
+            'id': 'admin@hotel.co.in',
+            'password':'admin@main'
+        }
+        user="Admin"
+        if(admin_data['id']== ad_id and admin_data['password']== ad_pass):
+            return render(request,'app/admindash.html',{'user':user})
+    else:
+        msg="your password and not match"
+        return render(request,'app/login.html',{'msg':msg})
     
