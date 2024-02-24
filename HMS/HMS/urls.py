@@ -31,4 +31,7 @@ urlpatterns = [
     path('register/',views.register,name='register'),
     path('login_Data/',views.login_Data,name='login_Data'),
     path('logout/',views.logout,name='logout'),
+    path('room_book/',views.room_book,name='room_book'),
+    path('add_room/',views.add_room,name='add_room'),
+    path('room_allotted/',views.room_allotted,name='room_allotted'),
 ]
