@@ -14,7 +14,19 @@ class Manager_registration(models.Model):
     Cnf_password=models.CharField(max_length=200)
     
     
-# class book_registration(models.Model):
-#     Check_in_date=models.DateField(auto_now=True)
-#     Check_out_date = models.DateTimeField()
-#     A
+class Rooms(models.Model):
+    Room_type=models.CharField(max_length=20)
+    Room_Number=models.CharField(max_length=5)
+
+    def __str__(self):
+        return self.Room_Number
+
+class Room_book(models.Model):
+    Name=models.CharField(max_length=200)
+    Email=models.EmailField()
+    Members=models.CharField(max_length=10)
+    room_allotted=models.ManyToManyField(Rooms)
+
+    def __str__(self):
+        return self.Name
+

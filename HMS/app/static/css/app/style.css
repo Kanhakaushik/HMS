@@ -283,7 +283,7 @@ button {
 .navigation.navbar-dark .navbar-nav .nav-link.show,
 .navigation.navbar-dark .navbar-nav .show>.nav-link {
      color: #fe0000;
-     border-bottom: #fe0000 solid 3px;
+     /* border-bottom: #fe0000 solid 3px; */
 }
 
 .navbar-expand-md .navbar-nav {
@@ -352,7 +352,7 @@ button {
      background-color: transparent;
      color: #fff;
      padding: 0 10px;
-     padding-right: 61px;
+     padding-right: 20px;
      margin-bottom: 25px;
      position: relative;
 }
@@ -361,7 +361,7 @@ button {
      position: absolute;
      width: 29px;
      height: 29px;
-     top: 48px;
+     top: 45px;
      background-repeat: no-repeat;
      right: 30px;
 }

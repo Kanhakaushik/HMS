@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from .forms import *
 # from django.shortcuts import render
 
 def home(request):
@@ -98,3 +99,42 @@ def logout(request):
         # del request.session["Name"]
         request.session.flush()
     return render(request,'app/index.html')
+
+def room_book(request):
+    Roomfrom=RoomsFrom()
+    RoombookFrom=Room_bookFrom()
+    return render(request,'app/room_book.html',{'Roomfrom':Roomfrom,'RoombookFrom':RoombookFrom})
+
+def add_room(request):
+    Roomtype=request.POST['Room_type']
+    RoomNumber=request.POST['Room_Number']
+
+    Rooms.objects.create(
+        Room_type=Roomtype,
+        Room_Number=RoomNumber,
+    )
+    Roomfrom=RoomsFrom()
+    RoombookFrom=Room_bookFrom()
+    return render(request,'app/room_book.html',{'Roomfrom':Roomfrom,'RoombookFrom':RoombookFrom})
+
+
+
+def room_allotted(request):
+    name=request.POST['Name']
+    email=request.POST['Email']
+    members=request.POST['Members']
+    allotted=request.POST['room_allotted']
+
+    data=Rooms.objects.get(id=allotted)
+
+    Room_book.objects.create(
+        Name=name,
+        Email=email,
+        Members=members,
+        room_allotted=data,
+    )
+   
+    Roomfrom=RoomsFrom()
+    RoombookFrom=Room_bookFrom()
+    return render(request,'app/room_book.html',{'Roomfrom':Roomfrom,'RoombookFrom':RoombookFrom})
+    
