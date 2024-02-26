@@ -1,0 +1,108 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block body %}
+
+
+
+<!--Fetched reults appear here-->
+<div class="container-fluid px-0 mx-aut">
+    {% if rooms %}
+    <table class="table">
+        <thead class="o">
+            <th>Type</th>
+            <th>Location</th>
+            <th>Person</th>
+            <th>price</th>
+            <th>Action</th>
+        </thead>
+        {% for r in rooms %}
+        <tr class="">
+            <td>{{ r.get_room_type_display }}</td>
+            <td>{{ r.hotel.location }}</td>
+            <td>{{ r.capacity }}</td>
+            <td>{{ r.price }}</td>
+
+            <td><a href="/user/book-room?roomid={{r.id}}"><button class="btn btn-warning">Book Now</button></a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    {% endif %}
+</div>
+<!--Fetched results ends here-->
+
+
+<h3 class="text-center text-dark">Rooms Types</h3>
+
+<!--Room tables starts here-->
+<div class="container-fluid px-0" style="border:1px solid red">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">Information</th>
+                <th class="text-center">View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    <!--Room details-->
+                    <h1>Budget</h1>
+                    <p>Price:$55/day</p>
+
+                    <p>Size :30 ft</p>
+                    <p>Capacity :Max person 3</p>
+
+                    <p>Services :Wifi,Tv,Bathroom</p>
+                    <p> Views :Sea View</p>
+                </td>
+                <td class="text-center">
+                    <!--Room Images-->
+                    <img src="#" alt="" class="img-fluid pt-4">
+                </td>
+
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <!--Room details-->
+                    <h1>Premium</h1>
+                    <p>Price:$55/day</p>
+
+                    <p>Size :30 ft</p>
+                    <p>Capacity :Max person 3</p>
+
+                    <p>Services :Wifi,Tv,Bathroom</p>
+                    <p> Views :Sea View</p>
+                </td>
+                <td class="text-center">
+                    <!--Room Images-->
+                    <img src="#" alt="" class="img-fluid pt-4">
+                </td>
+
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <!--Room details-->
+                    <h1>Deluxe</h1>
+                    <p>Price:$55/day</p>
+
+                    <p>Size :30 ft</p>
+                    <p>Capacity :Max person 3</p>
+
+                    <p>Services :Wifi,Tv,Bathroom</p>
+                    <p> Views :Sea View</p>
+                </td>
+                <td class="text-center">
+                    <!--Room Images-->
+                    <img src="#" alt="" class="img-fluid pt-4">
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock body %}
