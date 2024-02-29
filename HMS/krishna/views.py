@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect
 from django.http import HttpResponse , HttpResponseRedirect
-from .models import Hotels,Rooms,Reservation
+from .models import Hotels,Rooms,Reservation,Contactus
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
@@ -201,7 +201,6 @@ def edit_room(request):
         messages.success(request,"Room Details Updated Successfully")
         return redirect('staffpanel')
     else:
-    
         room_id = request.GET['roomid']
         room = Rooms.objects.all().get(id=room_id)
         response = render(request,'staff/editroom.html',{'room':room})
@@ -258,7 +257,7 @@ def book_room(request):
             else:
                 messages.warning(request,"Sorry This Room is unavailable for Booking")
                 return redirect("homepage")
-            
+        
         current_user = request.user
         total_person = int( request.POST['person'])
         booking_id = str(room_id) + str(datetime.datetime.now())
@@ -268,7 +267,6 @@ def book_room(request):
         room_object.status = '2'
         
         user_object = User.objects.all().get(username=current_user)
-
         reservation.guest = user_object
         reservation.room = room_object
         person = total_person
@@ -312,7 +310,6 @@ def add_new_location(request):
         location = request.POST['new_city']
         state = request.POST['new_state']
         country = request.POST['new_country']
-        
         hotels = Hotels.objects.all().filter(location = location , state = state)
         if hotels:
             messages.warning(request,"Sorry City at this Location already exist")
@@ -358,7 +355,6 @@ def delete(request):
         messages.success(request,"Room Details Updated Successfully")
         return redirect('staffpanel')
     else:
-    
         room_id = request.GET['roomid']
         room = Rooms.objects.all().get(id=room_id)
         response = render(request,'staff/editroom.html',{'room':room})
@@ -386,5 +382,61 @@ def mail(request):
     return render(request,'index.html')
 
 
+def contactsavedata(request):
+     if request.POST:
+         CName=request.POST['ConName']
+         Email=request.POST['ConEmail']
+         CPnumber=request.POST['ConPhone_Number']
+         Cmessage=request.POST['ConmMessage']
 
-    
+         user=Contactus.objects.filter(Email=Email)
+        
+         if user:
+             msg="user already exist"
+             return render(request, 'contact.html', {'data': msg})
+         
+         else:
+             Contactus.objects.create(
+                 ConName=CName,
+                 ConEmail=Email,
+                 ConPhone_Number=CPnumber,
+                 ConMessage=Cmessage
+
+             )
+
+             msg="data saved successfuly"
+             return render(request, 'contact.html',{'data':msg})
+
+     else:
+         
+        msg="change method again post"
+        return render(request, "contact.html")
+     
+# def savedata(request):
+#      if request.POST:
+#           Name =request.POST["name"]
+#           Email =request.POST["email"]
+#           Contact =request.POST["contact"]
+#           City =request.POST["city"]
+#           Password =request.POST["password"]
+
+#           user =Student.objects.filter(Email=Email)
+#           if user:
+#             msg= "user already exist"
+#             return render(request, 'app/register.html', {'data': msg})
+
+#           else:
+#             Student.objects.create(
+#             Name=Name,
+#             Email=Email,
+#             Contact=Contact,
+#             City=City,
+#             Password=Password
+#            )
+#             msg="user creation successfuly"
+#             return render(request, 'app/login.html',{'data':msg})
+
+#      else:
+         
+#         msg="change method again post"
+#         return render(request, "app/register.html")
