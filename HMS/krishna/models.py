@@ -41,9 +41,14 @@ class Reservation(models.Model):
     check_out = models.DateField()
     room = models.ForeignKey(Rooms, on_delete = models.CASCADE)
     guest = models.ForeignKey(User, on_delete= models.CASCADE)
-    
+
     booking_id = models.CharField(max_length=100,default="null")
     def __str__(self):
         return self.guest.username
 
+class Contactus(models.Model):
+    CName=models.CharField(max_length=200)
+    CEmail=models.EmailField()
+    CPnumber=models.IntegerField()
+    CMessage=models.CharField(max_length=200)
 
