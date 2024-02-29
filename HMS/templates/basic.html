@@ -43,8 +43,8 @@
     z-index: 1;
 ">
         <!-- header inner -->
-        <div class="header" style="display: flex; justify-content: space-between;>
-            <div class="container" >
+        <div class="header" style="display: flex; justify-content: space-between; border-bottom: 1px solid #043d5d;">
+           
                 <div class="logo_section">
                     <div class="full">
                         <div class="center-desk">
@@ -55,9 +55,6 @@
                         </div>
                     </div>
                 </div>
-
-
-    
                     <nav class="navigation navbar navbar-expand-lg navbar-dark " >
                        
                         <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -80,13 +77,6 @@
                                 <a class="nav-link text-bold" href="/staff/allbookings">All Bookings </a>
                             </li>
                             {% endif %}
-
-
-                                
-
-
-
-
 
                                 <li class="nav-item active">
                                     <a class="nav-link text-bold" href="/about">About</a>
@@ -112,13 +102,14 @@
                 <div style="display: flex;">
                     {% if user.is_authenticated %}
                     <button class="btn btn-group bg-light" data-toggle="modal" data-target="#forlogin">
-                        Hello, {{request.user}}
+                    Hello, {{request.user}}
+                        </button>
+
                         <a href="/logout" class="nav-link">
                             <button class="btn btn-group bg-warning" data-toggle="modal"
                                 data-target="#forlogin">
                                 Logout
                             </button></a>&nbsp; &nbsp;
-                    </button>
 
                     {% else %}
 
@@ -133,7 +124,6 @@
                         </button></a>
                     {% endif %}
                 </div>
-            </div>
         
         </div>
     </header>
@@ -153,6 +143,35 @@
     {% block body %}
 
     {% endblock body %}
+
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+
+                    <div class=" col-md-4">
+                        <h3>Contact US</h3>
+                        <ul class="conta">
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>News letter</h3>
+                        <form class="bottom_form">
+                            <input class="enter" placeholder="Enter your email" type="text" name="Enter your email">
+                            <button class="sub_btn">subscribe</button>
+                        </form>
+                        <ul class="social_icon">
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
 
 
 <!-- Javascript files-->
