@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import datetime
+from django.core.mail import send_mail  
 # Create your views here.
 
 #homepage
@@ -16,8 +17,6 @@ def homepage(request):
             print(request.POST)
             hotel = Hotels.objects.all().get(id=int(request.POST['search_location']))
             rr = []
-            
-            #for finding the reserved rooms on this time period for excluding from the query set
             for each_reservation in Reservation.objects.all():
                 if str(each_reservation.check_in) < str(request.POST['cin']) and str(each_reservation.check_out) < str(request.POST['cout']):
                     pass
@@ -34,11 +33,7 @@ def homepage(request):
         except Exception as e:
             messages.error(request,e)
             response = render(request,'index.html',{'all_location':all_location})
-
-
     else:
-        
-        
         data = {'all_location':all_location}
         response = render(request,'index.html',data)
     return HttpResponse(response)
@@ -53,7 +48,6 @@ def contactpage(request):
 
 def OurRooms(request):
     return render(request,'room.html')
-
 
 def gallery(request):
     return render(request,'gallery.html')
@@ -75,8 +69,6 @@ def user_sign_up(request):
                 return redirect('userloginpage')
         except:
             pass
-            
-
         new_user = User.objects.create_user(username=user_name,password=password1)
         new_user.is_superuser=False
         new_user.is_staff=False
@@ -84,6 +76,7 @@ def user_sign_up(request):
         messages.success(request,"Registration Successfull")
         return redirect("userloginpage")
     return HttpResponse('Access Denied')
+
 #staff sign up
 def staff_sign_up(request):
     if request.method =="POST":
@@ -370,6 +363,27 @@ def delete(request):
         room = Rooms.objects.all().get(id=room_id)
         response = render(request,'staff/editroom.html',{'room':room})
         return HttpResponse(response)
+
+def mail(request):
+    if request.method=="POST":
+        Name = request.POST['Name']
+        Email = request.POST['Email']
+        Phone_Number = request.POST['Phone_Number']
+        msg = request.POST['message']
+
+        subject="Test_Mail from Django Server"
+        msg1={"Name":Name,
+                "Email":Email,
+                "Phone Number":Phone_Number,
+                "message":msg}
+
+        from_email="vaibhvamalviya89@gmail.com"
+        # recipient_list=["vaibhavmalviya1999@outlook.com"]
+        message = str(msg1)
+        recipient_list=["vaibhavmalviya1999@outlook.com"]
+        send_mail(subject,message,from_email,recipient_list)
+
+    return render(request,'index.html')
 
 
 

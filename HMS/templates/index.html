@@ -51,12 +51,8 @@
                         <!--Hotel id and location-->
                         <option>Location</option>
                         {% for each_location,each_hotel_id in all_location %}
-
                         <option value={{each_hotel_id}}>{{each_location}}</option>
                         {% endfor %}
-
-
-
                     </select>
                 </div>
                 {%load app_tags%}
@@ -125,8 +121,7 @@
                     <div class="bed_room">
                        <h3>Bed Room</h3>
                        <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-                       
-                       <button><a href=""> BOOK NOW </a></button>
+                     
                     </div>
                  </div>
               </div>
@@ -246,7 +241,7 @@
      <!-- end gallery -->
      
          <!--  contact -->
-     <div class="contact">
+     <div class="contact" >
         <div class="container">
            <div class="row">
               <div class="col-md-12">
@@ -257,19 +252,20 @@
            </div>
            <div class="row">
               <div class="col-md-6">
-                 <form id="request" class="main_form">
+                 <form id="request" class="main_form" method="post" action="{% url 'mail' %}">
+                  {% csrf_token %}
                     <div class="row">
                        <div class="col-md-12 ">
-                          <input class="contactus" placeholder="Name" type="type" name="Name"> 
+                          <input class="contactus" placeholder="Name" type="text" name="Name"> 
                        </div>
                        <div class="col-md-12">
-                          <input class="contactus" placeholder="Email" type="type" name="Email"> 
+                          <input class="contactus" placeholder="Email" type="email" name="Email"> 
                        </div>
                        <div class="col-md-12">
-                          <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
+                          <input class="contactus" placeholder="Phone Number" type="text" name="Phone_Number">                          
                        </div>
                        <div class="col-md-12">
-                          <textarea class="textarea" placeholder="Message" type="type" Message="Name">Message</textarea>
+                          <textarea class="textarea" placeholder="Message" type="type" name="message"></textarea>
                        </div>
                        <div class="col-md-12">
                           <button class="send_btn">Send</button>
@@ -305,8 +301,8 @@
                         <h3>Contact US</h3>
                         <ul class="conta">
                             <li><i class="fa fa-map-marker" aria-hidden="true"></i> Address</li>
-                            <li><i class="fa fa-mobile" aria-hidden="true"></i> +01 1234569540</li>
-                            <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="#"> demo@gmail.com</a></li>
+                            <li><i class="fa fa-mobile" aria-hidden="true"></i> +91 1234567890</li>
+                            <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="#"> demo   @gmail.com</a></li>
                         </ul>
                     </div>
 

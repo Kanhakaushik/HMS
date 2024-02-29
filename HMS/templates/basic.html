@@ -37,16 +37,20 @@
 </head>
 
 <body class="main-layout">
-    <header>
+    <header style="
+    position: sticky;
+    top: 0;
+    z-index: 1;
+">
         <!-- header inner -->
-        <div class="header"  style="display: flex; justify-content: space-between;>
+        <div class="header" style="display: flex; justify-content: space-between;>
             <div class="container" >
                 <div class="logo_section">
                     <div class="full">
                         <div class="center-desk">
                             <div class="logo">
                                 <img src="{% static 'images/poco.png' %}" alt="#"
-                                    style="height: 100px;">
+                                    style="height: 65px;">
                             </div>
                         </div>
                     </div>

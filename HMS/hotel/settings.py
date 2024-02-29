@@ -120,3 +120,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER="vaibhavmalviya89@gmail.com"
+# generate less secure password in from your gmail account
+# 1. login your gmail account
+# 2. click your profile
+# 3. click on manage your google account
+# 4. click on security options
+# 5. click on 2-step varification
+# 6. scrool down and click on App password
+# 7. generate new password for less secure apps
+# 8. write this 16-digit password hear below
+EMAIL_HOST_PASSWORD="cjtbexmocindrhqh"
+
+EMAIL_USE_TLS="True"
