@@ -360,6 +360,7 @@ def delete(request):
         response = render(request,'staff/editroom.html',{'room':room})
         return HttpResponse(response)
 
+
 def mail(request):
     if request.method=="POST":
         Name = request.POST['Name']
