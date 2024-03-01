@@ -374,13 +374,10 @@ def mail(request):
                 "message":msg}
 
         from_email="vaibhvamalviya89@gmail.com"
-        # recipient_list=["vaibhavmalviya1999@outlook.com"]
         message = str(msg1)
         recipient_list=["vaibhavmalviya1999@outlook.com"]
         send_mail(subject,message,from_email,recipient_list)
-
     return render(request,'index.html')
-
 
 def contactsavedata(request):
      if request.POST:
@@ -401,12 +398,10 @@ def contactsavedata(request):
                  ConEmail=Email,
                  ConPhone_Number=CPnumber,
                  ConMessage=Cmessage
-
              )
 
              msg="data saved successfuly"
              return render(request, 'contact.html',{'data':msg})
-
      else:
          
         msg="change method again post"
