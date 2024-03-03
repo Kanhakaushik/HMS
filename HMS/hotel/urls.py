@@ -50,6 +50,10 @@ urlpatterns = [
     path('staff/allbookings/', views.delete),
 
     path('mail/', views.mail,name="mail"),
+    path('payment/<str:nm>,<str:pr>', views.payment,name="payment"),
+    path('item_payment/', views.item_payment,name="item_payment"),
+    path('paymentStatus/', views.paymentStatus,name="paymentStatus"),
+    # path('', views.payment_done,name="payment_done"),
 
     path('admin/', admin.site.urls),
     
