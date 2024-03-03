@@ -49,6 +49,8 @@ urlpatterns = [
 
     path('staff/allbookings/', views.delete),
 
+    path('mail/', views.mail,name="mail"),
+
     path('admin/', admin.site.urls),
     
 
