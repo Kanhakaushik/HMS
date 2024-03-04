@@ -2,9 +2,8 @@
 
 {% block body %}
 <!--Cards starts here-->
+<div class="user_login">
 <div class="container py-5">
-
-
     <!--login and signup tab starts here -->
     <section>
         <div class="card w-50 mx-auto">
@@ -17,16 +16,11 @@
                         <li class="nav-item">
                             <a class="nav-link active " data-toggle="tab" href="#home" style="width:158px">Login</a>
                         </li>
-
-
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#menu1" style="width:158px">Signup</a>
                         </li>
-
                 </div>
             </div>
-
-
             </ul>
             <div class="card-body">
 
@@ -42,8 +36,8 @@
                                     <form action="/user/login"  method="post">
                                         {% csrf_token %}
                                         <div class="form-group">
-                                            <label for="email">Username:</label>
-                                            <input type="text" class="form-control " id="email" placeholder="Enter email" name="email">
+                                            <label for="email">User Name:</label>
+                                            <input type="text" class="form-control " id="email" placeholder="Enter Name" name="email">
                                         </div>
                                         <div class="form-group">
                                             <label for="pwd">Password:</label>
@@ -98,6 +92,7 @@
     </section>
     <!--Login and logout tab ends here-->
     </div>
+</div>
 
     <!--Cards ends here-->
 {% endblock body %}

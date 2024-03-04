@@ -46,13 +46,8 @@ class Reservation(models.Model):
     def __str__(self):
         return self.guest.username
 
-class Contactus(models.Model):
-    CName=models.CharField(max_length=200)
-    CEmail=models.EmailField()
-    CPnumber=models.IntegerField()
-    CMessage=models.CharField(max_length=200)
 
-class ItemModel(models.Model):
+class PaymentModel(models.Model):
     name = models.CharField(max_length = 100)
     amount = models.IntegerField()
     order_id = models.CharField(max_length = 100)

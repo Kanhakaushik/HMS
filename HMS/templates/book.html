@@ -1,12 +1,37 @@
 {% extends 'basic.html' %}
 {% load static %}
-
 {% block body %}
+<head>
+    <style>
+        *{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+body{
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+    /* background: rgba( 71, 147, 227, 1); */
+}
+h2{
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    padding: 30px 0;
+}
 
-<div class="container-fluid px-0 mx-aut">
-    {% if rooms %}
-    <table class="table">
-        <thead class="o">
+    </style>
+</head>
+
+<body>
+    
+<div class="table-wrapper">
+<h3 class="text-center  text-success">available room</h3>
+{% if rooms %}
+    <table class="fl-table">
+        <thead>
             <th>Type</th>
             <th>Location</th>
             <th>capacity</th>
@@ -14,7 +39,7 @@
             <th>Action</th>
         </thead>
         {% for r in rooms %}
-        <tr class="">
+        <tr>
             <td>{{ r.get_room_type_display }}</td>
             <td>{{ r.hotel.location }}</td>
             <td>{{ r.capacity }}</td>
@@ -30,7 +55,7 @@
 <!--Fetched results ends here-->
 
 
-<h3 class="text-center text-dark">Rooms Types</h3>
+<h1 class="text-center">Rooms Types</h1>
 
 <!--Room tables starts here-->
 <div class="container-fluid px-0" style="border:1px solid red">
@@ -48,12 +73,10 @@
                     <!--Room details-->
                     <h1>Budget</h1>
                     <p>Price:₹55/day</p>
-
                     <p>Size :30 ft</p>
-                    <p>Capacity :Max person 3</p>
-
+                    <p>Capacity :Max person 4</p>
                     <p>Services :Wifi,Tv,Bathroom</p>
-                    <p> Views :Sea View</p>
+                   
                 </td>
                 <td class="text-center">
                     <!--Room Images-->
@@ -66,11 +89,10 @@
                     <!--Room details-->
                     <h1>Premium</h1>
                     <p>Price:₹55/day</p>
-
                     <p>Size :30 ft</p>
-                    <p>Capacity :Max person 3</p>
+                    <p>Capacity :Max person 4</p>
                     <p>Services :Wifi,Tv,Bathroom</p>
-                    <p> Views :Sea View</p>
+                  
                 </td>
                 <td class="text-center">
                     <!--Room Images-->
@@ -85,10 +107,9 @@
                     <p>Price:₹55/day</p>
 
                     <p>Size :30 ft</p>
-                    <p>Capacity :Max person 3</p>
-
+                    <p>Capacity :Max person 4</p>
                     <p>Services :Wifi,Tv,Bathroom</p>
-                    <p> Views :Sea View</p>
+        
                 </td>
                 <td class="text-center">
                     <!--Room Images-->
