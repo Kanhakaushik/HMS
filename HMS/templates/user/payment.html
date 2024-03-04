@@ -1,32 +1,153 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block body %}
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Payment</title>
+    <link rel="stylesheet" href="{% static 'css/app/style.css' %}">
 </head>
 
 <body>
-    <br />
-    <div class="container" style="width: 40%;">
-        <h4>Payment for Room Bookings</h1>
+    <div class="container">
+        <div class="row" style="margin-top: 60px;">
+            <div class="col-lg-4 mb-lg-0 mb-3" style="margin-left: 100px;" >
+                <div class="card p-3">
+                    <div class="img-box">
+                        <img src="https://www.freepnglogos.com/uploads/visa-logo-download-png-21.png" alt="" style="height: 160px;">
+                    </div>
+    
+                </div>
+            </div>
+            <div class="col-lg-4 mb-lg-0 mb-3" style="margin-left: 100px">
+                <div class="card p-3">
+                    <div class="img-box">
+                        <img src="https://www.freepnglogos.com/uploads/mastercard-png/file-mastercard-logo-svg-wikimedia-commons-4.png"
+                            alt=""style="height: 160px;">
+                    </div>
+                    
+                </div>
+            </div>
+      
+            <div class="col-12 mt-4">
+                <div class="card p-3">
+                    <p class="mb-0 fw-bold h4">Payment Methods</p>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card p-3">
+                    <div class="card-body border p-0">
 
-            <form method="post" action="{% url 'item_payment' %}">
-                {% csrf_token %}
-                    <input type="text" name="name" value={{nm}} required readonly>               
-                    <input type="text" name="amount" value={{pr}} required readonly>
-            
-            
-                <button type="submit">PAY</button>
-                <br /><br />
-            </form>
+                        <div class="collapse p-3 pt-0" id="collapseExample">
+                            <div class="row">
+                                <div class="col-8">
+                                    <p class="h4 mb-0">Summary</p>
+                                    <p class="mb-0"><span class="fw-bold">Hotel</span><span class="c-green"> Name of
+                                            product</span></p>
+                                    <p class="mb-0"><span class="fw-bold">Price:</span><span
+                                            class="c-green"></span></p>
+                                    <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque
+                                        nihil neque
+                                        quisquam aut
+                                        repellendus, dicta vero? Animi dicta cupiditate, facilis provident quibusdam ab
+                                        quis,
+                                        iste harum ipsum hic, nemo qui!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body border p-0">
+                        <p>
+                            <a class="btn btn-primary p-2 w-100 h-100 d-flex align-items-center justify-content-between"
+                                data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
+                                aria-controls="collapseExample">
+                                <span class="fw-bold">Razorpay </span>
+                                <span class="">
+                                    <span class="fab fa-cc-amex"></span>
+                                    <span class="fab fa-cc-mastercard"></span>
+                                    <span class="fab fa-cc-discover"></span>
+                                </span>
+                            </a>
+                        </p>
+                        <div class="collapse show p-3 pt-0" id="collapseExample">
+                            <div class="row">
+                                <div class="col-lg-5 mb-lg-0 mb-3">
+                                    <p class="h4 mb-0">Summary</p>
+                                    <p class="mb-0"><span class="fw-bold">Product:</span><span class="c-green"></span>
+                                    </p>
+                                    <p class="mb-0">
+                                        <span class="fw-bold">Price:</span>
+                                        <span class="c-green"></span>
+                                    </p>
+                                    <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque
+                                        nihil neque
+                                        quisquam aut
+                                        repellendus, dicta vero? Animi dicta cupiditate, facilis provident quibusdam ab
+                                        quis,
+                                        iste harum ipsum hic, nemo qui!</p>
+                                </div>
+                                <div class="col-lg-7">
+                                    <form method="post" action="{% url 'item_payment' %}" class="form">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form__div" style="margin: 20px;">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your Name" name="name" value={{nm}} required
+                                                        readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form__div" style="margin: 20px;">
+                                                    <input type="text" class="form-control"
+                                                        placeholder=" Enter your Amount" name="amount" value={{pr}}
+                                                        required readonly>
+                                                </div>
+                                            </div>
 
+
+
+                                            <div class="col-12">
+                                                <button style="margin-bottom: 30px;" class="btn btn-primary w-100" type="submit">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="col-12">
+                                        <div >
+                                            {% if payment %}
+                                            <form action="{% url 'paymentStatus' %}" method="post" >
+                                                <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                                    data-key="rzp_test_ank5gb82ed6Jfx" data-amount="{{payment.amount}}"
+                                                    data-currency="{{payment.currency}}" data-order_id="{{payment.id}}"
+                                                    data-buttontext="Pay with Razorpay" data-name="Item Corp"
+                                                    data-description="A Wild Sheep Chase is the third novel by Japanese author Haruki Murakami"
+                                                    data-image="https://example.com/your_logo.jpg"
+                                                    ata-prefill.name="{{payment.name}}"
+                                                    data-prefill.email="vaibhavmalviya89@gmail.com"
+                                                    data-theme.color="#F37254">
+                                                    </script>
+                                                <input type="hidden" custom="Hidden Element" name="hidden">
+                                            </form>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
             {% if payment %}
             <form action="{% url 'paymentStatus' %}" method="post">
                 <script src="https://checkout.razorpay.com/v1/checkout.js" 
-                    data-key="rzp_test_ank5gb82ed6Jfx"
+                    data-key="rzp_test_WacsBqwCGgnP1N"
                     data-amount="{{payment.amount}}" 
                     data-currency="{{payment.currency}}" 
                     data-order_id="{{payment.id}}"
@@ -42,10 +163,6 @@
             </form>
             {% endif %}
     </div>
-
-
-    </div>
-
 </body>
-
 </html>
+{% endblock body %}

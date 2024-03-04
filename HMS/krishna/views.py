@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect
 from django.http import HttpResponse , HttpResponseRedirect
-from .models import Hotels,Rooms,Reservation
+from .models import Hotels,Rooms,Reservation,Contactus
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
@@ -299,16 +299,9 @@ def user_bookings(request):
     user = User.objects.all().get(id=request.user.id)
     print(f"request user id ={request.user.id}")
     bookings = Reservation.objects.all().filter(guest=user)
-
-    nm=user.username
-    print(nm)
-
-    done=PaymentModel.objects.filter(name=nm)
-  
-
     if not bookings:
         messages.warning(request,"No Bookings Found")
-    return HttpResponse(render(request,'user/mybookings.html',{'bookings':bookings,'done':done}))
+    return HttpResponse(render(request,'user/mybookings.html',{'bookings':bookings}))
 
 @login_required(login_url='/staff')
 def add_new_location(request):
@@ -387,12 +380,39 @@ def mail(request):
         send_mail(subject,message,from_email,recipient_list)
     return render(request,'index.html')
 
+def contactsavedata(request):
+     if request.POST:
+         CName=request.POST['ConName']
+         Email=request.POST['ConEmail']
+         CPnumber=request.POST['ConPhone_Number']
+         Cmessage=request.POST['ConmMessage']
 
-#Payment Gateway
+         user=Contactus.objects.filter(Email=Email)
+        
+         if user:
+             msg="user already exist"
+             return render(request, 'contact.html', {'data': msg})
+         
+         else:
+             Contactus.objects.create(
+                 ConName=CName,
+                 ConEmail=Email,
+                 ConPhone_Number=CPnumber,
+                 ConMessage=Cmessage
+             )
+
+             msg="data saved successfuly"
+             return render(request, 'contact.html',{'data':msg})
+     else:
+         
+        msg="change method again post"
+        return render(request, "contact.html")
+
 
 import razorpay
 from django.views.decorators.csrf import csrf_exempt
-from .models import PaymentModel
+from .models import ItemModel
+
 
 def payment(request,nm,pr):
     # fm = PaymentForm()
@@ -402,16 +422,14 @@ def item_payment(request):
     if request.method=="POST":
         name = request.POST['name']
         amount = int(request.POST['amount']) * 100
-        # amount = int(request.POST['amount'])
-        client = razorpay.Client(auth=("rzp_test_ank5gb82ed6Jfx","jPpRlGXIaMvgyrlcb1gXuEoV"))
+        client = razorpay.Client(auth=("rzp_test_WacsBqwCGgnP1N","fkazi8QbTdceAkWWONziJE0H"))
         response_payment = client.order.create({'amount':amount, 'currency':'INR','payment_capture':'1' })
-    
-        # print(response_payment)
+
         order_status = response_payment['status']
         order_id = response_payment['id']
         
         if order_status=='created':
-            product = PaymentModel(name=name , amount =amount , order_id = response_payment['id'])
+            product = ItemModel(name=name , amount =amount , order_id = response_payment['id'])
             product.save()
             response_payment['name'] = name
             # fm = PaymentForm( request.POST or None)
@@ -432,10 +450,10 @@ def paymentStatus(request):
             'razorpay_signature': response['razorpay_signature']
         }
         # client instance
-        client = razorpay.Client(auth=("rzp_test_ank5gb82ed6Jfx","jPpRlGXIaMvgyrlcb1gXuEoV"))
+        client = razorpay.Client(auth=("rzp_test_WacsBqwCGgnP1N","fkazi8QbTdceAkWWONziJE0H"))
         try:
             status = client.utility.verify_payment_signature(params_dict)
-            item = PaymentModel.objects.get(order_id=response['razorpay_order_id'])
+            item = ItemModel.objects.get(order_id=response['razorpay_order_id'])
             item.razorpay_payment_id = response['razorpay_payment_id']
             item.paid = True
             item.save()
@@ -446,4 +464,5 @@ def paymentStatus(request):
             return render(request, 'user/payment_status.html', {'status': False})
     return render(request, 'user/payment_status.html')  
 
+# def payment_done(request):
     
