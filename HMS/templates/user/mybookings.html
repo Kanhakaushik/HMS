@@ -13,6 +13,19 @@ body{
     -webkit-font-smoothing: antialiased;
     /* background: rgba( 71, 147, 227, 1); */
 }
+.mybookpayment{
+    background-color:whitesmoke;
+    padding: 8px;
+    border-radius: 30px;
+    width: 130px;
+}
+.mybookpayment:hover
+{
+    background-color: rgb(241, 162, 14);
+    /* border: 2px solid white; */
+    color: white;
+    padding: -8px;
+}
 h2{
     text-align: center;
     font-size: 18px;
@@ -148,7 +161,7 @@ h2{
         <th>Check in</th>
         <th>Check out</th>
         <th>Price</th>
-        <th>Payment</th>
+        <th >Payment</th>
     </thead>
     {% for each_booking in bookings %}
     <tr>
@@ -162,12 +175,11 @@ h2{
         <td>
             <form action="{% url 'payment' nm=each_booking.guest.username pr=each_booking.room.price %}" method="post">
                 {% csrf_token %}
-                <button>Payment</button>
+                <button class="mybookpayment">Pay Now</button>
             </form>
         </td>
     </tr>
     {% endfor %}
-
 </tr>
 <tbody>
 </table>
