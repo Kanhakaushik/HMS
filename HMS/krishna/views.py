@@ -453,7 +453,7 @@ def item_payment(request):
         name = request.POST['name']
         amount = int(request.POST['amount']) * 100
         # amount = int(request.POST['amount'])
-        client = razorpay.Client(auth=("rzp_test_ank5gb82ed6Jfx","jPpRlGXIaMvgyrlcb1gXuEoV"))
+        client = razorpay.Client(auth=("rzp_test_WacsBqwCGgnP1N","fkazi8QbTdceAkWWONziJE0H"))
         response_payment = client.order.create({'amount':amount, 'currency':'INR','payment_capture':'1' })
     
         # print(response_payment)
@@ -482,7 +482,7 @@ def paymentStatus(request):
             'razorpay_signature': response['razorpay_signature']
         }
         # client instance
-        client = razorpay.Client(auth=("rzp_test_ank5gb82ed6Jfx","jPpRlGXIaMvgyrlcb1gXuEoV"))
+        client = razorpay.Client(auth=("rzp_test_WacsBqwCGgnP1N","fkazi8QbTdceAkWWONziJE0H"))
         try:
             status = client.utility.verify_payment_signature(params_dict)
             item = ItemModel.objects.get(order_id=response['razorpay_order_id'])
