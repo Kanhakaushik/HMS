@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block body %}
-
+<div class="table-wrapper">
 <div class="container-fluid px-0 mx-aut">
     {% if rooms %}
     <table class="table">
-        <thead class="o">
+        <thead >
             <th>Type</th>
             <th>Location</th>
             <th>capacity</th>
@@ -14,7 +14,7 @@
             <th>Action</th>
         </thead>
         {% for r in rooms %}
-        <tr class="">
+        <tr>
             <td>{{ r.get_room_type_display }}</td>
             <td>{{ r.hotel.location }}</td>
             <td>{{ r.capacity }}</td>
@@ -48,7 +48,6 @@
                     <!--Room details-->
                     <h1>Budget</h1>
                     <p>Price:₹55/day</p>
-
                     <p>Size :30 ft</p>
                     <p>Capacity :Max person 3</p>
 

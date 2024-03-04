@@ -1,8 +1,10 @@
 {% extends 'basic.html' %}
 
 {% block body %}
+<div class="table-wrapper">
 <h3 class="text-center  text-success">All Bookings </h3>
-<table class="table">
+<table class="fl-table">
+
     <thead>
         <th>User</th>
         <th>Room</th>
@@ -11,6 +13,8 @@
         <th>Check in</th>
         <th>Check out</th>
         <th>Price</th>
+        <th>Action</th>
+
     </thead>
     {% for each_booking in bookings %}
     <tr>
@@ -27,7 +31,5 @@
         </td>
     </tr>
     {% endfor %}
-
-
 </table>
 {% endblock body %}
