@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +15,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
     <!-- bootstrap css -->
     
     <link rel="stylesheet" href="{% static 'css/app/bootstrap.min.css' %}">
@@ -33,8 +36,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
 
-
-
+        <style>
+            footer {
+              padding: 2rem 0;
+        
+            }
+            .container{
+              max-width:100%;
+              font-family: 'Arial', sans-serif;
+              padding:0px;
+              margin-top:60px;
+            }
+          </style>
 
 </head>
 
@@ -145,34 +158,127 @@
 
     {% endblock body %}
 
-    <footer>
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-
-                    <div class=" col-md-4">
-                        <h3>Contact US</h3>
-                        <ul class="conta">
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h3>News letter</h3>
-                        <form class="bottom_form">
-                            <input class="enter" placeholder="Enter your email" type="text" name="Enter your email">
-                            <button class="sub_btn">subscribe</button>
-                        </form>
-                        <ul class="social_icon">
-                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-                        </ul>
-                    </div>
+    <div class="container">
+        <!-- Footer -->
+        <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
+            <!-- Section: Social media -->
+            <section class="d-flex justify-content-between p-4" style="background-color: #6351ce">
+                <!-- Left -->
+                <div class="me-5">
+                    <span>Get connected with us on social networks:</span>
                 </div>
-            </div>
-        </div>
+                <!-- Left -->
 
-    </footer>
+                <!-- Right -->
+                <div>
+                    <a href="" class="text-white me-4">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="" class="text-white me-4">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.google.com/search?q=google&rlz=1C1ONGR_enIN1093IN1093&oq=google&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTINCAEQLhjHARjRAxiABDIMCAIQIxgnGIAEGIoFMgoIAxAAGLEDGIAEMgoIBBAAGLEDGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQBRhA0gEINDYzMWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8" class="text-white me-4">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="" class="text-white me-4">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="" class="text-white me-4">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/Kanhakaushik/HMS" class="text-white me-4">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <!-- Right -->
+            </section>
+            <!-- Section: Social media -->
+
+            <!-- Section: Links  -->
+            <section class="">
+                <div class="container text-center text-md-start mt-5">
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <!-- Content -->
+                            <h4 class="text-uppercase fw-bold"style="color:white;">Company name</h4>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                            <p>
+                                Krishna Hotel is a renowned hospitality establishment that offers a perfect blend of comfort and luxury. With its exquisite interiors and top-notch amenities, Krishna Hotel is a preferred choice for discerning travelers seeking a memorable stay. 
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h4 class="text-uppercase fw-bold"style="color:white;">Rooms</h4>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                            <p>
+                                <a href="#!" class="text-white">Basic</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-white">Delux</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-white">Premium</a>
+                            </p>
+                            <!-- <p>
+                                <a href="#!" class="text-white">Bootstrap Angular</a>
+                            </p> -->
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h4 class="text-uppercase fw-bold"style="color:white;">Useful links</h4>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                            <p>
+                                <a href="/home" class="text-white">Home</a>
+                            </p>
+                            <p>
+                                <a href="/gallery" class="text-white">Gallery</a>
+                            </p>
+                            <p>
+                                <a href="/about" class="text-white">About</a>
+                            </p>
+                            <p>
+                                <a href="/contact" class="text-white">Contact</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <!-- Links -->
+                            <h4 class="text-uppercase fw-bold"style="color:white;">Contact</h4>
+                            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px" />
+                            
+                            <p><i class="fas fa-home mr-3"></i>Bhopal,MP 462023,India</p>
+                            <p><i class="fas fa-envelope mr-3"></i> admi@gmail.com</p>
+                            <p><i class="fas fa-phone mr-3"></i> + 91 6396021232    </p>
+                            <p><i class="fas fa-print mr-3"></i> + 91 7224021543</p>
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <!-- Grid row -->
+                </div>
+            </section>
+            <!-- Section: Links  -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                © 2024 Copyright
+                {% comment %} <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a> {% endcomment %}
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+
+    </div>
+    <!-- End of .container -->
 
 
 <!-- Javascript files-->

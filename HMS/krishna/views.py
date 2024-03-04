@@ -408,42 +408,12 @@ def contactsavedata(request):
         msg="change method again post"
         return render(request, "contact.html")
 
-     
-# def savedata(request):
-#      if request.POST:
-#           Name =request.POST["name"]
-#           Email =request.POST["email"]
-#           Contact =request.POST["contact"]
-#           City =request.POST["city"]
-#           Password =request.POST["password"]
 
-#           user =Student.objects.filter(Email=Email)
-#           if user:
-#             msg= "user already exist"
-#             return render(request, 'app/register.html', {'data': msg})
-
-#           else:
-#             Student.objects.create(
-#             Name=Name,
-#             Email=Email,
-#             Contact=Contact,
-#             City=City,
-#             Password=Password
-#            )
-#             msg="user creation successfuly"
-#             return render(request, 'app/login.html',{'data':msg})
-
-#      else:
-         
-#         msg="change method again post"
-#         return render(request, "app/register.html")
 import razorpay
 from django.views.decorators.csrf import csrf_exempt
 from .models import ItemModel
-# from .forms import PaymentForm
 
 
-     
 def payment(request,nm,pr):
     # fm = PaymentForm()
     return render(request,'user/payment.html',{'nm':nm,'pr':pr})
@@ -452,11 +422,9 @@ def item_payment(request):
     if request.method=="POST":
         name = request.POST['name']
         amount = int(request.POST['amount']) * 100
-        # amount = int(request.POST['amount'])
-        client = razorpay.Client(auth=("rzp_test_ank5gb82ed6Jfx","jPpRlGXIaMvgyrlcb1gXuEoV"))
+        client = razorpay.Client(auth=("rzp_test_WacsBqwCGgnP1N","fkazi8QbTdceAkWWONziJE0H"))
         response_payment = client.order.create({'amount':amount, 'currency':'INR','payment_capture':'1' })
-    
-        # print(response_payment)
+
         order_status = response_payment['status']
         order_id = response_payment['id']
         
@@ -482,7 +450,7 @@ def paymentStatus(request):
             'razorpay_signature': response['razorpay_signature']
         }
         # client instance
-        client = razorpay.Client(auth=("rzp_test_ank5gb82ed6Jfx","jPpRlGXIaMvgyrlcb1gXuEoV"))
+        client = razorpay.Client(auth=("rzp_test_WacsBqwCGgnP1N","fkazi8QbTdceAkWWONziJE0H"))
         try:
             status = client.utility.verify_payment_signature(params_dict)
             item = ItemModel.objects.get(order_id=response['razorpay_order_id'])
