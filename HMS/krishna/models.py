@@ -46,11 +46,6 @@ class Reservation(models.Model):
     def __str__(self):
         return self.guest.username
 
-class Contactus(models.Model):
-    CName=models.CharField(max_length=200)
-    CEmail=models.EmailField()
-    CPnumber=models.IntegerField()
-    CMessage=models.CharField(max_length=200)
 
 class ItemModel(models.Model):
     name = models.CharField(max_length = 100)
@@ -58,3 +53,5 @@ class ItemModel(models.Model):
     order_id = models.CharField(max_length = 100)
     razorpay_payment_id = models.CharField(max_length = 100,blank=True)
     paid = models.BooleanField(default=False)
+    def __str__(self):
+        return self.name
