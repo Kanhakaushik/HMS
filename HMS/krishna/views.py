@@ -289,7 +289,8 @@ def view_room(request):
     room_id = request.GET['roomid']
     room = Rooms.objects.all().get(id=room_id)
 
-    reservation = Reservation.objects.all().filter(room=room)
+    reservation=Reservation.objects.all().filter(room=room)
+
     return HttpResponse(render(request,'staff/viewroom.html',{'room':room,'reservations':reservation}))
 
 @login_required(login_url='/user')
@@ -299,9 +300,16 @@ def user_bookings(request):
     user = User.objects.all().get(id=request.user.id)
     print(f"request user id ={request.user.id}")
     bookings = Reservation.objects.all().filter(guest=user)
+
+    pay=ItemModel.objects.all()
+    
+
+
+    print(user)
+
     if not bookings:
         messages.warning(request,"No Bookings Found")
-    return HttpResponse(render(request,'user/mybookings.html',{'bookings':bookings}))
+    return HttpResponse(render(request,'user/mybookings.html',{'bookings':bookings,'pay':pay}))
 
 @login_required(login_url='/staff')
 def add_new_location(request):

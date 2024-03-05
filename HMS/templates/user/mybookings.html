@@ -59,6 +59,7 @@ h2{
         <td>{{each_booking.check_out}}</td>
         <td>{{each_booking.room.price}}</td>
         <td>
+            
             <form action="{% url 'payment' nm=each_booking.guest.username pr=each_booking.room.price %}" method="post">
                 {% csrf_token %}
                 <button class="mybookpayment">Pay Now</button>
