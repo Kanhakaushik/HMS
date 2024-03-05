@@ -464,5 +464,3 @@ def paymentStatus(request):
             return render(request, 'user/payment_status.html', {'status': False})
     return render(request, 'user/payment_status.html')  
 
-# def payment_done(request):
-    
