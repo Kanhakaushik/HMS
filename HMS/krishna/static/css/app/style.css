@@ -754,9 +754,11 @@ button {
 
 .footer {
      background: #0f1521;
-     margin-top: 90px;
-     padding-top: 60px;
+     /* margin-top: 90px;
+     padding-top: 60px; */
+     width: 100%;
      text-align: center;
+    
 }
 
 .footer h3 {
