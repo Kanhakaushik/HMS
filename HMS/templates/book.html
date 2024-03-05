@@ -1,11 +1,11 @@
 {% extends 'basic.html' %}
 {% load static %}
-
 {% block body %}
-<div class="table-wrapper" style="width: 100%; margin-right: 50%; " >
-    <div class="container-fluid px-0 mx-aut" >
+<div class="table-wrapper">
+    <h3 class="text-center  text-success" style="font-size: 30px;">Available rooms</h3>
+    <div class="container-fluid px-0 mx-aut">
         {% if rooms %}
-        <table class="table" >
+        <table class="fl-table">
             <thead>
                 <th>Type</th>
                 <th>Location</th>
@@ -23,15 +23,12 @@
                 <td><a href="/user/book-room?roomid={{r.id}}"><button class="btn btn-warning">Book Now</button></a></td>
             </tr>
             {% endfor %}
-
         </table>
         {% endif %}
     </div>
+    </div>
     <!--Fetched results ends here-->
-
-
-    <h3 class="text-center text-dark">Rooms Types</h3>
-
+    <h3 class="text-center" style="color: rgb(12, 12, 61); font-size: 35px;">Rooms Types</h3>
     <!--Room tables starts here-->
     <div class="container-fluid px-0" style="border:1px solid red">
 
@@ -39,72 +36,51 @@
             <thead>
                 <tr>
                     <th class="text-center">Information</th>
-
-
                     <th class="text-center">View</th>
-
                 </tr>
             </thead>
-
             <tbody>
                 <tr>
                     <td class="text-center" style="margin-left: 200px;">
                         <!--Room details-->
                         <h1 style="margin-top: 30px;">Basic</h1>
-                        <p>Price:₹55/day</p>
+                        <p>Price:₹400/day</p>
                         <p>Size :30 ft</p>
-                        <p>Capacity :Max person 3</p>
-
-                        <p>Services :Wifi,Tv,Bathroom</p>
-                        <p> Views :Sea View</p>
+                        <p>Capacity :Max person 4</p>
                     </td>
                     <td class="text-center">
                         <!--Room Images-->
                         <img src="{% static 'images/room5.jpg' %}" alt="" class="img-fluid pt-4">
                     </td>
-
                 </tr>
-
-
-
-
-
                 <tr>
                     <td class="text-center">
                         <!--Room details-->
                         <h1 style="margin-top: 30px;">Premium</h1>
-                        <p>Price:₹55/day</p>
-
+                        <p>Price:₹550/day</p>
                         <p>Size :30 ft</p>
-                        <p>Capacity :Max person 3</p>
+                        <p>Capacity :Max person 4</p>
                         <p>Services :Wifi,Tv,Bathroom</p>
-                        <p> Views :Sea View</p>
                     </td>
                     <td class="text-center">
                         <!--Room Images-->
                         <img src="{% static 'images/room4.jpg' %}" alt="" class="img-fluid pt-4">
                     </td>
-
                 </tr>
                 <tr>
                     <td class="text-center">
                         <!--Room details-->
                         <h1 style="margin-top: 30px;">Deluxe</h1>
-                        <p>Price:₹55/day</p>
-
+                        <p>Price:₹650/day</p>
                         <p>Size :30 ft</p>
                         <p>Capacity :Max person 3</p>
-
                         <p>Services :Wifi,Tv,Bathroom</p>
-                        <p> Views :Sea View</p>
                     </td>
                     <td class="text-center">
                         <!--Room Images-->
                         <img src="{% static 'images/room1.jpg' %}" alt="" class="img-fluid pt-4">
                     </td>
-
                 </tr>
-
             </tbody>
         </table>
     </div>

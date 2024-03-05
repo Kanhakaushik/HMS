@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect
 from django.http import HttpResponse , HttpResponseRedirect
-from .models import Hotels,Rooms,Reservation,Contactus
+from .models import *
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
@@ -331,6 +331,7 @@ def add_new_location(request):
 @login_required(login_url='/staff')
 def all_bookings(request):
     bookings = Reservation.objects.all()
+
     if not bookings:
         messages.warning(request,"No Bookings Found")
     return HttpResponse(render(request,'staff/allbookings.html',{'bookings':bookings}))
@@ -380,33 +381,6 @@ def mail(request):
         send_mail(subject,message,from_email,recipient_list)
     return render(request,'index.html')
 
-def contactsavedata(request):
-     if request.POST:
-         CName=request.POST['ConName']
-         Email=request.POST['ConEmail']
-         CPnumber=request.POST['ConPhone_Number']
-         Cmessage=request.POST['ConmMessage']
-
-         user=Contactus.objects.filter(Email=Email)
-        
-         if user:
-             msg="user already exist"
-             return render(request, 'contact.html', {'data': msg})
-         
-         else:
-             Contactus.objects.create(
-                 ConName=CName,
-                 ConEmail=Email,
-                 ConPhone_Number=CPnumber,
-                 ConMessage=Cmessage
-             )
-
-             msg="data saved successfuly"
-             return render(request, 'contact.html',{'data':msg})
-     else:
-         
-        msg="change method again post"
-        return render(request, "contact.html")
 
 
 import razorpay
