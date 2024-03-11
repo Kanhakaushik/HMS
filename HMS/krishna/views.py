@@ -300,16 +300,9 @@ def user_bookings(request):
     user = User.objects.all().get(id=request.user.id)
     print(f"request user id ={request.user.id}")
     bookings = Reservation.objects.all().filter(guest=user)
-
-    pay=ItemModel.objects.all()
-    
-
-
-    print(user)
-
     if not bookings:
         messages.warning(request,"No Bookings Found")
-    return HttpResponse(render(request,'user/mybookings.html',{'bookings':bookings,'pay':pay}))
+    return HttpResponse(render(request,'user/mybookings.html',{'bookings':bookings}))
 
 @login_required(login_url='/staff')
 def add_new_location(request):
@@ -400,7 +393,7 @@ def payment(request,nm,pr):
     # fm = PaymentForm()
     return render(request,'user/payment.html',{'nm':nm,'pr':pr})
 
-def item_payment(request):
+def item_payment(request,nm,pr):
     if request.method=="POST":
         name = request.POST['name']
         amount = int(request.POST['amount']) * 100
@@ -415,7 +408,7 @@ def item_payment(request):
             product.save()
             response_payment['name'] = name
             # fm = PaymentForm( request.POST or None)
-            return render(request,'user/payment.html',{'payment':response_payment})
+            return render(request,'user/payment.html',{'payment':response_payment,'nm':nm,'pr':pr})
 
    
     return render(request,'user/payment.html')
