@@ -73,7 +73,7 @@
                                 </div>
 
                                 <div class="col-lg-7">
-                                    <form method="post" action="{% url 'item_payment' %}" class="form">
+                                    <form method="post" action="{% url 'item_payment' nm=nm pr=pr %}" class="form">
                                         {% csrf_token %}
                                         <div class="row">
                                             <div class="col-12">
