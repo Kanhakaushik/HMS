@@ -289,7 +289,8 @@ def view_room(request):
     room_id = request.GET['roomid']
     room = Rooms.objects.all().get(id=room_id)
 
-    reservation = Reservation.objects.all().filter(room=room)
+    reservation=Reservation.objects.all().filter(room=room)
+
     return HttpResponse(render(request,'staff/viewroom.html',{'room':room,'reservations':reservation}))
 
 @login_required(login_url='/user')
@@ -392,7 +393,7 @@ def payment(request,nm,pr):
     # fm = PaymentForm()
     return render(request,'user/payment.html',{'nm':nm,'pr':pr})
 
-def item_payment(request):
+def item_payment(request,nm,pr):
     if request.method=="POST":
         name = request.POST['name']
         amount = int(request.POST['amount']) * 100
@@ -407,7 +408,7 @@ def item_payment(request):
             product.save()
             response_payment['name'] = name
             # fm = PaymentForm( request.POST or None)
-            return render(request,'user/payment.html',{'payment':response_payment})
+            return render(request,'user/payment.html',{'payment':response_payment,'nm':nm,'pr':pr})
 
    
     return render(request,'user/payment.html')
